@@ -401,17 +401,67 @@ console.log(karmThree.replace(/(\w+) \1/g, '+'))
 
 
 /*-------Несохраняющие скобки-----*/
+let nosave = 'abab123';
+let nosaveR = nosave.match(/(?:ab)+([1-9]+)/);
+console.log(nosaveR[1])
+// ?: - не будет класть в карман
+
+/*-----Позитивный и негативный просмотр-------*/
+
+// Получите массив имен функций из строки.
+let posi = 'func1() func2() func3()';
+let posiRes = posi.match(/\w+(?=\(\))/g)
+console.log(posiRes)
+
+// Получите массив имен атрибутов этого тега.
+let posiTwo = '<a href="" class="eee" id="zzz">';
+let posiTwoRes = posiTwo.match(/\w+(?=")/g)
+console.log(posiTwoRes)
 
 
 
+/*------Коллбэк в методе replace------*/
+
+let kol = '2+3= 4+5= 6+7=';
+let kolRes = kol.replace(/(\d+)\+(\d+)=/g, function (match0, match1, match2) {
+    let sum = Number(match1) + Number(match2);
+    return match0 + sum;
+})
+console.log(kolRes)
 
 
+let kolT = 'aaa [2] bbb [3] ccc [12] ddd';
+let kolTRes = kolT.replace(/\d+/g, function (match) {
+    return match * 2;
+})
+console.log(kolTRes)
+// Найдите числа, стоящие в скобках и увеличьте их в два раза.То есть из нашей строки должна получится следующая: 'aaa [4] bbb [6] ccc [24] ddd'
 
+let kolTh = '123 456 789';
+let kolThRes = kolTh.replace(/(\d)(\d)(\d)/g, function (match0, match1, match2, match3) {
+    return match3 + match2 + match1;
+})
+console.log(kolThRes)
+// Найдите все числа и переверните их цифры в обратном порядке.То есть из нашей строки должна получится следующая: '321 654 987'
+
+
+let kolF = '31.12.2025 30.11.2024 29.10.2023';
+let kolFRes = kolF.replace(/(\d+)\.(\d+)\.(\d+)/g, function (alldate, day, month, year) {
+    return year + '-' + month + '-' + day
+})
+console.log(kolFRes)
+// Найдите все даты и преобразуйте их в другой формат так, чтобы получилась следующая строка: '2025-12-31 2024-11-30 2023-10-29'
 
 
 /*------------*/
-/*------------*/
-/*------------*/
+
+
+
+
+
+
+
+
 /*------------*/
 /*------------*/
 /*------------*/
