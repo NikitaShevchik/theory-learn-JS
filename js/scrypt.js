@@ -325,6 +325,82 @@ console.log(sum)
 
 
 /*-------Карманы в методе match-----*/
+let pock = 'sss domain.ru zzz';
+let pockRes = pock.match(/(\w+)\.(\w+)/)
+// Найдите этот домен и положите его имя в первый карман, а зону - во второй.
+console.log(pockRes)
+console.log(pockRes[0])
+console.log(pockRes[1])
+console.log(pockRes[2])
+
+
+let pockTwo = '31.12.2025';
+let pockTwoRes = pockTwo.match(/(\d+)\.(\d+)\.(\d{4})/)
+// Положите день в первый карман, месяц - во второй, а год - в третий.
+console.log(pockTwoRes)
+console.log(pockTwoRes[0])
+console.log(pockTwoRes[1])
+console.log(pockTwoRes[2])
+console.log(pockTwoRes[3])
+
+
+/*-------Карманы в методе replace-----*/
+
+let popo = '1 23 456 xax';
+let popoRes = popo.replace(/(\d+)/g, '($1)');
+console.log(popoRes)
+
+let popoTwo = 'aaa@bbb ccc@ddd';
+let popoTwoRes = popoTwo.replace(/([a-z]+)@([a-z]+)/g, '$2@$1')
+console.log(popoTwoRes)
+
+let popoThree = '12 34 56 78';
+let popoThreeRes = popoThree.replace(/(\d)(\d)/g, '$2$1')
+console.log(popoThreeRes)
+// Поменяйте местами цифры во всех двухзначных числах.
+
+let popoFour = '31.12.2025';
+let popoFourRes = popoFour.replace(/(\d+)\.(\d+).(\d+)/, '$3.$2.$1')
+console.log(popoFourRes)
+// Преобразуйте эту дату в '2025.12.31'.
+
+
+/*------Карманы по умолчанию в методе replace------*/
+
+let po = '1 23 456';
+let poR = po.replace(/\d+/g, '($&)');
+console.log(poR)
+
+
+let pocket = 'a1b2c3';
+let pocketRes = pocket.replace(/\d/g, '$&$&')
+console.log(pocketRes)
+// Напишите регулярку, которая рядом с каждой цифрой напишет такую же.
+
+
+let pocketTwo = 'sss site.ru zzz site.com kkk';
+let pocketTwoRes = pocketTwo.replace(/\w+\.\w+/g, '<a href = "http://$&" >$&</a>')
+console.log(pocketTwoRes)
+// Замените домены на ссылки вида:
+// < a href = "http://site.ru" > site.ru</>
+
+
+/*-------Карманы в самой регулярке-----*/
+let karm = 'aaa bbb ccc xyz';
+console.log(karm.replace(/([a-z])\1\1/g, '+'))
+// Найдите все подстроки, в которых есть три одинаковые буквы подряд.
+
+let karmTwo = 'a aa aaa aaaa aaaaa';
+console.log(karmTwo.replace(/([a-z])\1+/g, '+'))
+// Найдите все подстроки, в которых есть две и более одинаковые буквы подряд.
+
+
+let karmThree = 'aaa aaa bbb bbb ccc ddd';
+console.log(karmThree.replace(/(\w+) \1/g, '+'))
+// Найдите все подстроки, в которых есть два одинаковых слова подряд.
+
+
+/*-------Несохраняющие скобки-----*/
 
 
 
@@ -333,9 +409,12 @@ console.log(sum)
 
 
 
-
-
-
+/*------------*/
+/*------------*/
+/*------------*/
+/*------------*/
+/*------------*/
+/*------------*/
 /*------------*/
 /*------------*/
 /*------------*/
