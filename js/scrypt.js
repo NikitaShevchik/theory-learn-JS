@@ -924,20 +924,71 @@ for (let i = 1; i < tr.length; i++) {
 let jsonobjwork = JSON.stringify(objWork)
 console.log(jsonobjwork)
 
+/*-----Изменение данных в JSON на JavaScript-------*/
+
+
+let jsonok = '["user1","user2","user3","user4","user5"]';
+// Добавьте в конец строки еще одного юзера.
+// let ar = JSON.parse(jsonok)
+// ar.push('user6')
+// jsonok = JSON.stringify(ar)
+// console.log(jsonok)
+
+
+function parsePushStringify(jeson, value) {
+    let arrjeson = JSON.parse(jeson);
+    arrjeson.push(value);
+    jeson = JSON.stringify(arrjeson)
+    return jeson
+}
+console.log(parsePushStringify(jsonok, 'user6'))
+
+
+
+
+let jsonic = '["user1","userERROR","user3","user4","user5"]';
+console.log(jsonic)
+// Поменяйте имя второго юзера.
+let arrjsonic = JSON.parse(jsonic);
+arrjsonic[1] = "user2";
+jsonic = JSON.stringify(arrjsonic)
+console.log(jsonic)
 
 
 
 
 
+let jsonych = `[
+	{
+		"name": "user1",
+		"age": 25,
+		"salary": 1000
+	},
+	{
+		"name": "user2",
+		"age": 26,
+		"salary": 2000
+	},
+	{
+		"name": "user3",
+		"age": 27,
+		"salary": 3000
+	}
+]`;
+console.log(jsonych)
+// Добавьте в эту строку еще одного работника.
+let arrjsonych = JSON.parse(jsonych);
+console.log(arrjsonych)
+arrjsonych.push({
+    name: 'user4',
+    age: 17,
+    salary: 80900
+});
+console.log(arrjsonych)
+jsonych = JSON.stringify(arrjsonych)
+console.log(jsonych)
 
 
-
-
-
-
-
-
-/*------------*/
 /*------------*/
 /*------------*/
 /*------------*/
