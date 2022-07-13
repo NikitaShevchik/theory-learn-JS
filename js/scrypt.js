@@ -629,18 +629,17 @@ for (let value of values) {
 }
 
 /*------Применение коллекций Map------*/
-
-let mapP = new Map;
-
-var z = 1;
-for (let p of allP) {
-    mapP.set(p, z++)
-}
-
-for (let p of allP) {
-    p.addEventListener('click', function () {
-        this.innerHTML = this.innerHTML + mapP.get(this);
-    })
+function primColMap() {
+    let mapP = new Map;
+    var z = 1;
+    for (let p of allP) {
+        mapP.set(p, z++)
+    }
+    for (let p of allP) {
+        p.addEventListener('click', function () {
+            this.innerHTML = this.innerHTML + mapP.get(this);
+        })
+    }
 }
 
 // Даны инпуты. Переберите эти инпуты циклом и создайте коллекцию Map, ключами в которой будут инпуты, а значением - их порядковый номер на странице. Сделайте так, чтобы по клику на любой инпут ему в value записывался его порядковый номер.
@@ -748,6 +747,182 @@ function cleanArray(arr) {
 console.log(cleanArray(arrai))
 
 /*-----Получение дом элементов без дублей-------*/
+const button = document.querySelector('button')
+let setik = new Set;
+for (let p of allP) {
+    p.addEventListener('click', function () {
+        setik.add(p)
+    })
+}
+button.addEventListener('click', function () {
+    for (let s of setik) {
+        s.innerHTML += '!'
+    }
+})
+
+/*------Массивы ArrayBuffer в JavaScript------*/
+let buffer = new ArrayBuffer(32)
+console.log(buffer)
+// супер редкий
+
+/*-------Введение в формат JSON в JavaScript-----*/
+
+let arro = [1, 2, 3, 'a', 'b', 'c'];
+// Вручную преобразуйте этот массив в строку в формате JSON.
+let arrojson = '[1, 2, 3, a, b, c]';
+console.log(typeof (arro), typeof (arrojson))
+
+let objo = {
+    a: 1,
+    b: 2,
+    c: 'eee',
+    d: true,
+};
+// Вручную преобразуйте этот массив в строку в формате JSON.
+let objojson = `{
+    "a": "1",
+    "b": "2",
+    "c": "eee",
+    "d": "true"
+}`;
+
+
+let objor = {
+    a: ['a', 'b', 'c',],
+    b: '111',
+    c: 'eee',
+};
+// Вручную преобразуйте этот массив в строку в формате JSON.
+let objorjson = `{
+    "a": "[a, b, c]",
+    "b": "111",
+    "c": "eee"
+}`;
+
+/*-----Преобразование JSON в структуру данных JavaScript-------*/
+let json = '[1, 2, 3, 4, 5, "a", "b"]'; // массив в формате джейсон
+
+let arrjson = JSON.parse(json);
+console.log(arrjson)
+// let json = '[1, 2, 3, 4, 5,]'; // некорректный JSON
+// let arr = JSON.parse(json);    // выдаст ошибку
+
+
+let json2 = '[1,2,3,4,5]';
+// Преобразуйте эту строку в настоящий массив JavaScript и найдите сумму чисел этого массива.
+let arrjson2 = JSON.parse(json2)
+let sumjs = 0;
+for (let k of arrjson2) {
+    sumjs = sumjs + k;
+}
+console.log(arrjson2, sumjs)
+
+
+let json3 = `{
+	"data1": [1,2,3],
+	"data2": [4,5,6],
+	"data3": [7,8,9]
+}`;
+// Найдите сумму чисел из представленных данных.
+let arrjson3 = JSON.parse(json3);
+let sumarrjson3 = 0;
+for (let i in arrjson3) {
+    for (let k of arrjson3[i]) {
+        sumarrjson3 = sumarrjson3 + k;
+    }
+}
+console.log(sumarrjson3)
+
+
+
+
+let json4 = '["user1","user2","user3","user4","user5"]';
+// Выведите эти имена в виде списка ul.
+const ul = document.querySelector('.ul')
+let arrjson4 = JSON.parse(json4)
+for (let u of arrjson4) {
+    ul.innerHTML += `<li class="li">${u}</li>`
+}
+
+
+
+
+
+
+let json5 = `[
+	{
+		"name": "user1",
+		"age": 25,
+		"salary": 1000
+	},
+	{
+		"name": "user2",
+		"age": 26,
+		"salary": 2000
+	},
+	{
+		"name": "user3",
+		"age": 27,
+		"salary": 3000
+	},
+	{
+		"name": "user4",
+		"age": 17,
+		"salary": 700
+	}
+]`;
+// Выведите этих работников на экран в виде HTML таблицы.
+let arrjson5 = JSON.parse(json5);
+const tableInfo = document.querySelector('.workers__body')
+
+for (let i of arrjson5) {
+    console.log(i)
+    tableInfo.innerHTML += `<ul class="workers__item item">
+    <li class="item__name">${i.name}</li>
+    <li class="item__age">${i.age}</li>
+    <li class="item__salary">${i.salary}$</li>
+</ul>`
+}
+
+
+/*------Преобразование структур данных JavaScript в формат JSON------*/
+let arrnojson = [1, 2, 3, 4, 5, 'a', 'b'];
+let jsonarr = JSON.stringify(arrnojson);
+console.log(jsonarr)
+
+let jsonov = ['user1', 'user2', 'user3', 'user4', 'user5'];
+// Преобразуйте этот массив в формат JSON.
+let arrjsonov = JSON.stringify(jsonov)
+console.log(arrjsonov)
+
+
+
+
+// Получите список городов в формате JSON.
+const allCities = document.querySelector('.cities');
+let citiesArr = []
+for (let c of allCities.children) {
+    citiesArr.push(c.textContent)
+}
+let citiesjson = JSON.stringify(citiesArr);
+console.log(citiesjson);
+
+
+
+// Получите представленные данные в формате JSON в виде объекта с ключами surname, name, patronymic.
+const table = document.querySelector('table');
+const tr = table.querySelectorAll('tr')
+let objWork = [];
+for (let i = 1; i < tr.length; i++) {
+    const allTd = tr[i].querySelectorAll('td');
+    objWork.push({
+        surname: allTd[0].textContent,
+        name: allTd[1].textContent,
+        patronymic: allTd[2].textContent
+    })
+}
+let jsonobjwork = JSON.stringify(objWork)
+console.log(jsonobjwork)
 
 
 
@@ -761,6 +936,15 @@ console.log(cleanArray(arrai))
 
 
 
+
+/*------------*/
+/*------------*/
+/*------------*/
+/*------------*/
+/*------------*/
+/*------------*/
+/*------------*/
+/*------------*/
 /*------------*/
 /*------------*/
 /*------------*/

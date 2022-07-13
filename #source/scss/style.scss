@@ -9,7 +9,7 @@ body{
 .main {
     margin: 0 0 20px 0;
     p{
-        font-size: 40px;
+        font-size: 30px;
         margin: 0 0 10px 0;
         &:last-child{
             margin: 0;
@@ -21,12 +21,78 @@ body{
     flex-direction: column;
 }
 .input{
-    font-size: 40px;
+    font-size: 30px;
     width: 500px;
     margin: 0 0 10px 0;
     padding: 5px 10px;
     border: 1px solid #000;
     &:last-child{
         margin: 0;
+    }
+}
+
+button{
+    background-color: rgb(255, 187, 0);
+    padding: 10px 60px;
+    font-size: 30px;
+    border-radius: 5px;
+}
+
+.ul {
+    padding: 10px 20px;
+    font-size: 40px;
+}
+.li {
+    line-height: 1.4;
+}
+
+.workers {
+    font-size: 30px;
+    line-height: 1.4;
+    &__table {
+    }
+
+    &__header {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-weight: 700;
+    }
+
+    &__value {
+        width: 100%;
+    }
+
+    &__body {
+        
+    }
+
+    &__item {
+        
+    }
+}
+.item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &__name {
+        width: 100%;
+    }
+
+    &__age {
+        width: 100%;
+    }
+
+    &__salary {
+        width: 100%;
+    }
+}
+.cities {
+    padding: 10px 20px;
+    font-size: 40px;
+    &__li {
+        line-height: 1.4;
     }
 }
