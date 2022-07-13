@@ -1,5 +1,6 @@
 @charset "UTF-8";
 /*Обнуление*/
+@import url("https://fonts.googleapis.com/css2?family=Kantumruy+Pro&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -72,3 +73,33 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*--------------------*/
+body {
+  font-family: "Kantumruy Pro", sans-serif;
+}
+
+.main {
+  margin: 0 0 20px 0;
+}
+.main p {
+  font-size: 40px;
+  margin: 0 0 10px 0;
+}
+.main p:last-child {
+  margin: 0;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  font-size: 40px;
+  width: 500px;
+  margin: 0 0 10px 0;
+  padding: 5px 10px;
+  border: 1px solid #000;
+}
+.input:last-child {
+  margin: 0;
+}

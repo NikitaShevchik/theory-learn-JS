@@ -1,5 +1,32 @@
 // Обнуление стилей
 @import "nullstyle.scss";
 // Подключение шрифтов
-
+@import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro&display=swap');
 //SCSS
+body{
+    font-family: 'Kantumruy Pro', sans-serif;
+}
+.main {
+    margin: 0 0 20px 0;
+    p{
+        font-size: 40px;
+        margin: 0 0 10px 0;
+        &:last-child{
+            margin: 0;
+        }
+    }
+}
+.inputs {
+    display: flex;
+    flex-direction: column;
+}
+.input{
+    font-size: 40px;
+    width: 500px;
+    margin: 0 0 10px 0;
+    padding: 5px 10px;
+    border: 1px solid #000;
+    &:last-child{
+        margin: 0;
+    }
+}
