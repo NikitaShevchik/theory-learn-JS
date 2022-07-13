@@ -945,7 +945,6 @@ console.log(parsePushStringify(jsonok, 'user6'))
 
 
 
-
 let jsonic = '["user1","userERROR","user3","user4","user5"]';
 console.log(jsonic)
 // Поменяйте имя второго юзера.
@@ -953,8 +952,6 @@ let arrjsonic = JSON.parse(jsonic);
 arrjsonic[1] = "user2";
 jsonic = JSON.stringify(arrjsonic)
 console.log(jsonic)
-
-
 
 
 
