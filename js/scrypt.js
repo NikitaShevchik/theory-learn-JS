@@ -418,8 +418,6 @@ let posiTwo = '<a href="" class="eee" id="zzz">';
 let posiTwoRes = posiTwo.match(/\w+(?=")/g)
 console.log(posiTwoRes)
 
-
-
 /*------Коллбэк в методе replace------*/
 
 let kol = '2+3= 4+5= 6+7=';
@@ -453,6 +451,76 @@ console.log(kolFRes)
 // Найдите все даты и преобразуйте их в другой формат так, чтобы получилась следующая строка: '2025-12-31 2024-11-30 2023-10-29'
 
 
+/*------Метод search в регулярных выражениях JavaScript------*/
+
+let sea = '1 23 456 789';
+console.log(sea.search(/\w{3}/))
+
+
+/*------Метод split в регулярных выражениях------*/
+let spl = '2025-12-31 12:59:59';
+// Разбейте эту строку так, чтобы все части даты и времени были в одном массиве. То есть у вас должен получится следующий массив:
+// ['2025', '12', '31', '12', '59', '59'];
+let splArr = spl.split(/[-:\s]/)
+console.log(splArr)
+
+/*------Головоломки------*/
+// Определите, что год находится в интервале от 1900 до 2100 с помощью одного только регулярного выражения.
+let golOne = '2022';
+console.log(golOne.replace(/\w+/, function (year) {
+    if (year <= 2100 && year >= 1900) {
+        return true
+    } else {
+        return false
+    }
+}))
+// Определите, что переданная строка является корректным временем вида часы:минуты. Часы и минуты не должны выходить за диапазон времени.
+let golTwo = '05:01'
+console.log(golTwo.replace(/([\w]+)\:([\w]+)/, function (time, hours, minutes) {
+    if (time.length == 5) {
+        if (hours >= 0 && hours < 24) {
+            if (minutes >= 0 && minutes < 60) {
+                return 'right time'
+            } else {
+                return 'Not right time'
+            }
+        } else {
+            return 'Not right time'
+        }
+    } else {
+        return 'Not right time'
+    }
+}))
+
+// Удалите одной регуляркой все повторяющиеся слова из строки.
+// let golThree = 'apple orange kivi melon apple kivi orange kivi melon kivi melon melon nikita apple';
+// console.log(golThree.replace(/([a-z]+)/g, function (allWords, word) {
+//     let golThreeKar = golThree.match(/(\w+)/g);
+//     let result = [];
+//     result.push(golThreeKar[0])
+//     for (let i = 0; i < golThreeKar.length; i++) {
+//         if (!result.includes(golThreeKar[i])) {
+//             result.push(golThreeKar[i])
+//         }
+//     }
+//     let resultNew = result.join(' ')
+//     return word[0]
+// }))
+
+// let golo = 'apple orange apple'.split(' ').filter(function (word, i, arr) {
+//     return !~arr.indexOf(word, i + 1);
+// }).join(" ")
+// console.log(golo)
+
+let gogolo = 'nikita nikita orange bima bima apple'
+console.log(gogolo.replace(/([a-z]+) \1/g, '-'))
+
+// Удалите одной регуляркой все слова из предложения, содержащие две одинаковые следующие друг за другом буквы.
+let gogolok = 'This sentence with added words with double letters'
+console.log(gogolok.replace(/\s*\w*([a-z])\1[a-z]*/g, function (all, word, lett) {
+    return ''
+}))
+
 /*------------*/
 
 
@@ -462,9 +530,18 @@ console.log(kolFRes)
 
 
 
-/*------------*/
-/*------------*/
-/*------------*/
+
+
+
+
+
+
+
+
+
+
+
+
 /*------------*/
 /*------------*/
 /*------------*/
