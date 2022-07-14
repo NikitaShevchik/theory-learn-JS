@@ -1111,48 +1111,52 @@ function savingLocalsStorage() {
     }
 }
 /*------Модификация хранимых структур------*/
-let users = [
-    {
-        surname: 'surname1',
-        name: 'name1',
-        age: 31,
-    },
-    {
-        surname: 'surname2',
-        name: 'name2',
-        age: 32,
-    },
-    {
-        surname: 'surname3',
-        name: 'name3',
-        age: 33,
-    },
-];
-const inputsSaver = document.querySelector('.inputs__saver');
-const allInputs = document.querySelectorAll('.input');
+function modificationSavedtructures() {
+    let users = [
+        {
+            surname: 'surname1',
+            name: 'name1',
+            age: 31,
+        },
+        {
+            surname: 'surname2',
+            name: 'name2',
+            age: 32,
+        },
+        {
+            surname: 'surname3',
+            name: 'name3',
+            age: 33,
+        },
+    ];
+    const inputsSaver = document.querySelector('.inputs__saver');
+    const allInputs = document.querySelectorAll('.input');
 
-localStorage.setItem('users', JSON.stringify(users))
-console.log(localStorage.getItem('users'))
-
-let userNew = { surname: '-', name: '-', age: '-' }
-
-// Сохраните его в локальное хранилище. Затем сделайте 3 инпута и кнопку. 
-// Пусть в инпуты вводятся фамилия, имя и возраст. 
-// По нажатию на кнопку запишите нового юзера в конец сохраненного в хранилище массива.
-function localInputs() {
-    let arrayUsersJSON = localStorage.getItem('users');
-    let users = JSON.parse(arrayUsersJSON)
-    let userNew = { surname: '-', name: '-', age: '-' }
-    userNew.surname = allInputs[0].value;
-    userNew.name = allInputs[1].value;
-    userNew.age = Number(allInputs[2].value);
-    users.push(userNew);
     localStorage.setItem('users', JSON.stringify(users))
-
     console.log(localStorage.getItem('users'))
-    console.log(users)
+
+    let userNew = { surname: '-', name: '-', age: '-' }
+
+    // Сохраните его в локальное хранилище. Затем сделайте 3 инпута и кнопку. 
+    // Пусть в инпуты вводятся фамилия, имя и возраст. 
+    // По нажатию на кнопку запишите нового юзера в конец сохраненного в хранилище массива.
+    function localInputs() {
+        let arrayUsersJSON = localStorage.getItem('users');
+        let users = JSON.parse(arrayUsersJSON)
+        let userNew = { surname: '-', name: '-', age: '-' }
+        userNew.surname = allInputs[0].value;
+        userNew.name = allInputs[1].value;
+        userNew.age = Number(allInputs[2].value);
+        users.push(userNew);
+        localStorage.setItem('users', JSON.stringify(users))
+
+        console.log(localStorage.getItem('users'))
+        console.log(users)
+    }
+    inputsSaver.addEventListener('click', localInputs)
 }
-inputsSaver.addEventListener('click', localInputs)
+
+/*-----------------------------------------Обработка исключительных ситуаций в JavaScript-----------------------------------------*/
 
 
 
@@ -1167,7 +1171,7 @@ inputsSaver.addEventListener('click', localInputs)
 
 
 
-/*------------*/
+
 /*------------*/
 /*------------*/
 /*------------*/
