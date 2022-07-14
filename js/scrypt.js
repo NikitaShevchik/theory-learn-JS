@@ -1043,6 +1043,7 @@ saveButtonBirthday.addEventListener('click', function () {
 let birthDate = localStorage.getItem('birthDate')
 
 window.onload = function () {
+
     if (birthDate != null) {
         let today = (new Date()).getDate()
         let todayMonth = (new Date()).getMonth() + 1
@@ -1054,6 +1055,34 @@ window.onload = function () {
         }
     }
 }
+
+const input = document.querySelector('.input')
+input.addEventListener('blur', function () {
+    localStorage.setItem('inputValue', input.value)
+})
+
+window.onload = function () {
+    input.setAttribute('placeholder', localStorage.getItem('inputValue'))
+}
+
+// Пользователь заходит на сайт, затем обновляет страницу, 
+// затем еще раз обновляет и так далее. Сделайте счетчик обновления страницы. 
+// Каждый раз при обновлении выводите значение счетчика на экран.
+
+if (localStorage.getItem('reloads') == null) {
+    localStorage.setItem('reloads', 0)
+}
+window.addEventListener('unload', function () {
+    localStorage.setItem('reloads', Number(localStorage.getItem('reloads')) + 1);
+})
+
+console.log(localStorage.getItem('reloads'))
+
+
+
+
+
+
 
 
 
