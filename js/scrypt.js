@@ -527,259 +527,261 @@ function regularLearn() {
 /*---------------------------------------------------------------------Коллекции--------------------------------------------------------------------*/
 
 /*-----Псевдомассивы-------*/
+function collectionInJsLearn() {
 
-const allP = document.querySelectorAll('p');
 
-// Каким-нибудь способом получите псевдомассив элементов. Преобразуйте его в массив тремя описанными способами.
-let pArr = [];
-for (let p of allP) {
-    pArr.push(p.innerHTML)
-}
+    const allP = document.querySelectorAll('p');
 
-let pArr2 = [...allP]
-console.log(pArr2)
-
-let pArr3 = Array.from(allP)
-console.log(pArr3)
-
-// С помощью метода slice получите все абзацы, кроме первого и последнего.
-console.log(pArr.slice(1, pArr.length - 1))
-
-/*-----Типы псевдомассивов в JavaScript-------*/
-
-// При добавлении нового элемента в наш DOM - в этом случае он автоматически появится в HTMLCollection, но коллекция NodeList останется без изменений.
-
-const main = document.querySelector('.main')
-
-let mainNodes = main.childNodes;
-let mainChild = main.children;
-
-// main.innerHTML += `<p>Йо я новый</p>`
-console.log(mainNodes, mainChild, allP)
-
-/*-----Коллекции Map-------*/
-
-let obj = { a: 1, b: 2, c: 3 };
-
-let map = new Map;
-
-let arr1 = [1, 2];
-let arr2 = [3, 4];
-
-map.set(arr1, 'Hello')
-map.set(arr2, 'How are you')
-
-console.log(map.get(arr1), map.get(arr2))
-// Пусть даны 3 объекта и 3 массива. Создайте коллекцию Map, сделайте ключами коллекции объекты, а значениями - соответствующие массивы.
-let obj1 = { Message: 'hello' }
-let obj2 = { Question: 'how are you?' }
-let obj3 = { Name: 'Nikita' }
-
-let arr3 = [5, 6]
-let arr4 = [7, 8]
-let arr5 = [9, 10]
-
-map.set(obj1, arr3)
-map.set(obj2, arr4)
-map.set(obj3, arr5)
-console.log(map.get(obj1), map.get(obj2), map.get(obj3))
-
-/*------Полезные свойства и методы коллекций Map------*/
-
-console.log(map.size);
-console.log(map.has(arr1)) // Проверить наличие ключа
-map.delete(arr2) // Удалить элемент из коллекции
-console.log(map.get(arr2));
-map.clear() // Очистить всю коллекцию
-
-/*------Перебор коллекций Map циклом------*/
-
-let map2 = new Map;
-
-let arrMap1 = [1, 2];
-let arrMap2 = [3, 4];
-
-map2.set(arrMap1, 'data1');
-map2.set(arrMap2, 'data2');
-
-for (let elem of map2) {
-    console.log(elem)
-}
-
-for (let [key, elem] of map2) {
-    console.log(key)
-    console.log(elem)
-}
-
-/*------Отделение ключей и значений в коллекциях Map------*/
-
-let values = map2.values()
-let keys = map2.keys()
-let entries = map2.entries();
-console.log(values, keys)
-console.log(entries)
-
-// Пусть дана коллекция Map. Получите массив ее ключей и переберите их циклом for-of.
-for (let key of keys) {
-    console.log(key)
-}
-// Пусть дана коллекция Map. Получите массив ее элементов и переберите их циклом for-of.
-for (let value of values) {
-    console.log(value)
-}
-
-/*------Применение коллекций Map------*/
-function primColMap() {
-    let mapP = new Map;
-    var z = 1;
+    // Каким-нибудь способом получите псевдомассив элементов. Преобразуйте его в массив тремя описанными способами.
+    let pArr = [];
     for (let p of allP) {
-        mapP.set(p, z++)
+        pArr.push(p.innerHTML)
     }
+
+    let pArr2 = [...allP]
+    console.log(pArr2)
+
+    let pArr3 = Array.from(allP)
+    console.log(pArr3)
+
+    // С помощью метода slice получите все абзацы, кроме первого и последнего.
+    console.log(pArr.slice(1, pArr.length - 1))
+
+    /*-----Типы псевдомассивов в JavaScript-------*/
+
+    // При добавлении нового элемента в наш DOM - в этом случае он автоматически появится в HTMLCollection, но коллекция NodeList останется без изменений.
+
+    const main = document.querySelector('.main')
+
+    let mainNodes = main.childNodes;
+    let mainChild = main.children;
+
+    // main.innerHTML += `<p>Йо я новый</p>`
+    console.log(mainNodes, mainChild, allP)
+
+    /*-----Коллекции Map-------*/
+
+    let obj = { a: 1, b: 2, c: 3 };
+
+    let map = new Map;
+
+    let arr1 = [1, 2];
+    let arr2 = [3, 4];
+
+    map.set(arr1, 'Hello')
+    map.set(arr2, 'How are you')
+
+    console.log(map.get(arr1), map.get(arr2))
+    // Пусть даны 3 объекта и 3 массива. Создайте коллекцию Map, сделайте ключами коллекции объекты, а значениями - соответствующие массивы.
+    let obj1 = { Message: 'hello' }
+    let obj2 = { Question: 'how are you?' }
+    let obj3 = { Name: 'Nikita' }
+
+    let arr3 = [5, 6]
+    let arr4 = [7, 8]
+    let arr5 = [9, 10]
+
+    map.set(obj1, arr3)
+    map.set(obj2, arr4)
+    map.set(obj3, arr5)
+    console.log(map.get(obj1), map.get(obj2), map.get(obj3))
+
+    /*------Полезные свойства и методы коллекций Map------*/
+
+    console.log(map.size);
+    console.log(map.has(arr1)) // Проверить наличие ключа
+    map.delete(arr2) // Удалить элемент из коллекции
+    console.log(map.get(arr2));
+    map.clear() // Очистить всю коллекцию
+
+    /*------Перебор коллекций Map циклом------*/
+
+    let map2 = new Map;
+
+    let arrMap1 = [1, 2];
+    let arrMap2 = [3, 4];
+
+    map2.set(arrMap1, 'data1');
+    map2.set(arrMap2, 'data2');
+
+    for (let elem of map2) {
+        console.log(elem)
+    }
+
+    for (let [key, elem] of map2) {
+        console.log(key)
+        console.log(elem)
+    }
+
+    /*------Отделение ключей и значений в коллекциях Map------*/
+
+    let values = map2.values()
+    let keys = map2.keys()
+    let entries = map2.entries();
+    console.log(values, keys)
+    console.log(entries)
+
+    // Пусть дана коллекция Map. Получите массив ее ключей и переберите их циклом for-of.
+    for (let key of keys) {
+        console.log(key)
+    }
+    // Пусть дана коллекция Map. Получите массив ее элементов и переберите их циклом for-of.
+    for (let value of values) {
+        console.log(value)
+    }
+
+    /*------Применение коллекций Map------*/
+    function primColMap() {
+        let mapP = new Map;
+        var z = 1;
+        for (let p of allP) {
+            mapP.set(p, z++)
+        }
+        for (let p of allP) {
+            p.addEventListener('click', function () {
+                this.innerHTML = this.innerHTML + mapP.get(this);
+            })
+        }
+    }
+
+    // Даны инпуты. Переберите эти инпуты циклом и создайте коллекцию Map, ключами в которой будут инпуты, а значением - их порядковый номер на странице. Сделайте так, чтобы по клику на любой инпут ему в value записывался его порядковый номер.
+    function firstInputMapTask() {
+        const allInputs = document.querySelectorAll('input')
+        let mapInput = new Map;
+
+        var o = 1;
+        for (let i of allInputs) {
+            mapInput.set(i, o++)
+        }
+        console.log(mapInput)
+        for (let inpu of allInputs) {
+            inpu.addEventListener('click', function () {
+                this.value = mapInput.get(this)
+            })
+        }
+    }
+
+    // Даны инпуты. В каждый инпут можно ввести число. Пусть по нажатию на Enter инпут запоминает введенное число. Сделайте так, чтобы по потери фокуса в инпуте в консоль выводился массив всех введенных ранее в инпут чисел.
+    function secondInputMapTask() {
+        const allInputs = document.querySelectorAll('input')
+        let mapInput = new Map;
+        for (let inpu of allInputs) {
+            inpu.addEventListener('keyup', function (e) {
+                if (e.key == 'Enter') {
+                    mapInput.set(this.value)
+                }
+            })
+            inpu.addEventListener('blur', function () {
+                for (let key of mapInput.keys()) {
+                    console.log(key)
+                }
+                // this.value = mapInput.get(this)
+            })
+        }
+    }
+
+    /*------Коллекции Set------*/
+    let set = new Set;
+    let arr = [1, 2, 3, 1, 3, 4];
+    // С помощью этого массива создаейте коллекцию Set.
+    for (let a of arr) {
+        set.add(a)
+    }
+    console.log(set)
+    // Создайте пустую коллекцию Set.С помощью метода add добавьте в нее элементы со значениями 1, 2 и 3.
+    let set2 = new Set;
+    set2.add(1);
+    set2.add(2);
+    set2.add(3);
+    console.log(set2)
+
+    /*------Полезные свойства и методы коллекций Set------*/
+
+    // set.size
+    // set.has(1)
+    // set.delete(1)
+    // set.clear()
+
+    // Создайте коллекцию Set с начальными значениями 1, 2 и 3. Выведите на экран количество элементов в коллекции.
+    let k = new Set;
+    k.add(1);
+    k.add(2);
+    k.add(3)
+    console.log(k.size)
+    // Создайте коллекцию Set с начальными значениями 1, 2 и 3. Проверьте наличие в коллекции элемента со значением 3, а затем элемента со значением 4.
+    console.log(k.has(3), k.has(4))
+
+    /*-----Перебор коллекций Set циклом-------*/
+
+    // Создайте коллекцию Set с какими-нибудь числами. Переберите эту коллекцию циклом и найдите сумму ее элементов.
+
+    let su = new Set;
+    su.add(5).add(6).add(3).add(9).add(3);
+    var sumSu = 0;
+    for (let k of su) {
+        sumSu = sumSu + k;
+    }
+    console.log('Сумма коллеции = ', sumSu)
+
+    /*------Преобразование коллекций Set------*/
+
+    // Дана коллекция Set. Преобразуйте ее в массив двумя описанными способами.
+    let seti = new Set([1, 2, 3]);
+    let mass = [...seti];
+    let yt = Array.from(seti)
+    console.log(mass, yt)
+    // Дан массив. Преобразуйте его в коллекцию.
+    let arri = [1, 2, 4, 4, 5, 3, 7, 3]
+    let setti = new Set(arri)
+    console.log(arri, setti)
+
+    /*------Удаление дублей с помощью коллекций Set------*/
+
+    // Напишите функцию, которая параметром будет принимать массив и возвращать этот массив без дублей.
+    let arrai = [1, 2, 2, 2, 3]
+
+    function cleanArray(arr) {
+        let se = new Set(arr);
+        arr = [...se]
+        return arr
+    }
+
+    console.log(cleanArray(arrai))
+
+    /*-----Получение дом элементов без дублей-------*/
+    const button = document.querySelector('button')
+    let setik = new Set;
     for (let p of allP) {
         p.addEventListener('click', function () {
-            this.innerHTML = this.innerHTML + mapP.get(this);
+            setik.add(p)
         })
     }
-}
-
-// Даны инпуты. Переберите эти инпуты циклом и создайте коллекцию Map, ключами в которой будут инпуты, а значением - их порядковый номер на странице. Сделайте так, чтобы по клику на любой инпут ему в value записывался его порядковый номер.
-function firstInputMapTask() {
-    const allInputs = document.querySelectorAll('input')
-    let mapInput = new Map;
-
-    var o = 1;
-    for (let i of allInputs) {
-        mapInput.set(i, o++)
-    }
-    console.log(mapInput)
-    for (let inpu of allInputs) {
-        inpu.addEventListener('click', function () {
-            this.value = mapInput.get(this)
-        })
-    }
-}
-
-// Даны инпуты. В каждый инпут можно ввести число. Пусть по нажатию на Enter инпут запоминает введенное число. Сделайте так, чтобы по потери фокуса в инпуте в консоль выводился массив всех введенных ранее в инпут чисел.
-function secondInputMapTask() {
-    const allInputs = document.querySelectorAll('input')
-    let mapInput = new Map;
-    for (let inpu of allInputs) {
-        inpu.addEventListener('keyup', function (e) {
-            if (e.key == 'Enter') {
-                mapInput.set(this.value)
-            }
-        })
-        inpu.addEventListener('blur', function () {
-            for (let key of mapInput.keys()) {
-                console.log(key)
-            }
-            // this.value = mapInput.get(this)
-        })
-    }
-}
-
-/*------Коллекции Set------*/
-let set = new Set;
-let arr = [1, 2, 3, 1, 3, 4];
-// С помощью этого массива создаейте коллекцию Set.
-for (let a of arr) {
-    set.add(a)
-}
-console.log(set)
-// Создайте пустую коллекцию Set.С помощью метода add добавьте в нее элементы со значениями 1, 2 и 3.
-let set2 = new Set;
-set2.add(1);
-set2.add(2);
-set2.add(3);
-console.log(set2)
-
-/*------Полезные свойства и методы коллекций Set------*/
-
-// set.size
-// set.has(1)
-// set.delete(1)
-// set.clear()
-
-// Создайте коллекцию Set с начальными значениями 1, 2 и 3. Выведите на экран количество элементов в коллекции.
-let k = new Set;
-k.add(1);
-k.add(2);
-k.add(3)
-console.log(k.size)
-// Создайте коллекцию Set с начальными значениями 1, 2 и 3. Проверьте наличие в коллекции элемента со значением 3, а затем элемента со значением 4.
-console.log(k.has(3), k.has(4))
-
-/*-----Перебор коллекций Set циклом-------*/
-
-// Создайте коллекцию Set с какими-нибудь числами. Переберите эту коллекцию циклом и найдите сумму ее элементов.
-
-let su = new Set;
-su.add(5).add(6).add(3).add(9).add(3);
-var sumSu = 0;
-for (let k of su) {
-    sumSu = sumSu + k;
-}
-console.log('Сумма коллеции = ', sumSu)
-
-/*------Преобразование коллекций Set------*/
-
-// Дана коллекция Set. Преобразуйте ее в массив двумя описанными способами.
-let seti = new Set([1, 2, 3]);
-let mass = [...seti];
-let yt = Array.from(seti)
-console.log(mass, yt)
-// Дан массив. Преобразуйте его в коллекцию.
-let arri = [1, 2, 4, 4, 5, 3, 7, 3]
-let setti = new Set(arri)
-console.log(arri, setti)
-
-/*------Удаление дублей с помощью коллекций Set------*/
-
-// Напишите функцию, которая параметром будет принимать массив и возвращать этот массив без дублей.
-let arrai = [1, 2, 2, 2, 3]
-
-function cleanArray(arr) {
-    let se = new Set(arr);
-    arr = [...se]
-    return arr
-}
-
-console.log(cleanArray(arrai))
-
-/*-----Получение дом элементов без дублей-------*/
-const button = document.querySelector('button')
-let setik = new Set;
-for (let p of allP) {
-    p.addEventListener('click', function () {
-        setik.add(p)
+    button.addEventListener('click', function () {
+        for (let s of setik) {
+            s.innerHTML += '!'
+        }
     })
-}
-button.addEventListener('click', function () {
-    for (let s of setik) {
-        s.innerHTML += '!'
-    }
-})
 
-/*------Массивы ArrayBuffer в JavaScript------*/
-let buffer = new ArrayBuffer(32)
-console.log(buffer)
-// супер редкий
+    /*------Массивы ArrayBuffer в JavaScript------*/
+    let buffer = new ArrayBuffer(32)
+    console.log(buffer)
+    // супер редкий
 
-/*-------Введение в формат JSON в JavaScript-----*/
+    /*-------Введение в формат JSON в JavaScript-----*/
 
-let arro = [1, 2, 3, 'a', 'b', 'c'];
-// Вручную преобразуйте этот массив в строку в формате JSON.
-let arrojson = '[1, 2, 3, a, b, c]';
-console.log(typeof (arro), typeof (arrojson))
+    let arro = [1, 2, 3, 'a', 'b', 'c'];
+    // Вручную преобразуйте этот массив в строку в формате JSON.
+    let arrojson = '[1, 2, 3, a, b, c]';
+    console.log(typeof (arro), typeof (arrojson))
 
-let objo = {
-    a: 1,
-    b: 2,
-    c: 'eee',
-    d: true,
-};
-// Вручную преобразуйте этот массив в строку в формате JSON.
-let objojson = `{
+    let objo = {
+        a: 1,
+        b: 2,
+        c: 'eee',
+        d: true,
+    };
+    // Вручную преобразуйте этот массив в строку в формате JSON.
+    let objojson = `{
     "a": "1",
     "b": "2",
     "c": "eee",
@@ -787,69 +789,69 @@ let objojson = `{
 }`;
 
 
-let objor = {
-    a: ['a', 'b', 'c',],
-    b: '111',
-    c: 'eee',
-};
-// Вручную преобразуйте этот массив в строку в формате JSON.
-let objorjson = `{
+    let objor = {
+        a: ['a', 'b', 'c',],
+        b: '111',
+        c: 'eee',
+    };
+    // Вручную преобразуйте этот массив в строку в формате JSON.
+    let objorjson = `{
     "a": "[a, b, c]",
     "b": "111",
     "c": "eee"
 }`;
 
-/*-----Преобразование JSON в структуру данных JavaScript-------*/
-let json = '[1, 2, 3, 4, 5, "a", "b"]'; // массив в формате джейсон
+    /*-----Преобразование JSON в структуру данных JavaScript-------*/
+    let json = '[1, 2, 3, 4, 5, "a", "b"]'; // массив в формате джейсон
 
-let arrjson = JSON.parse(json);
-console.log(arrjson)
-// let json = '[1, 2, 3, 4, 5,]'; // некорректный JSON
-// let arr = JSON.parse(json);    // выдаст ошибку
-
-
-let json2 = '[1,2,3,4,5]';
-// Преобразуйте эту строку в настоящий массив JavaScript и найдите сумму чисел этого массива.
-let arrjson2 = JSON.parse(json2)
-let sumjs = 0;
-for (let k of arrjson2) {
-    sumjs = sumjs + k;
-}
-console.log(arrjson2, sumjs)
+    let arrjson = JSON.parse(json);
+    console.log(arrjson)
+    // let json = '[1, 2, 3, 4, 5,]'; // некорректный JSON
+    // let arr = JSON.parse(json);    // выдаст ошибку
 
 
-let json3 = `{
+    let json2 = '[1,2,3,4,5]';
+    // Преобразуйте эту строку в настоящий массив JavaScript и найдите сумму чисел этого массива.
+    let arrjson2 = JSON.parse(json2)
+    let sumjs = 0;
+    for (let k of arrjson2) {
+        sumjs = sumjs + k;
+    }
+    console.log(arrjson2, sumjs)
+
+
+    let json3 = `{
 	"data1": [1,2,3],
 	"data2": [4,5,6],
 	"data3": [7,8,9]
 }`;
-// Найдите сумму чисел из представленных данных.
-let arrjson3 = JSON.parse(json3);
-let sumarrjson3 = 0;
-for (let i in arrjson3) {
-    for (let k of arrjson3[i]) {
-        sumarrjson3 = sumarrjson3 + k;
+    // Найдите сумму чисел из представленных данных.
+    let arrjson3 = JSON.parse(json3);
+    let sumarrjson3 = 0;
+    for (let i in arrjson3) {
+        for (let k of arrjson3[i]) {
+            sumarrjson3 = sumarrjson3 + k;
+        }
     }
-}
-console.log(sumarrjson3)
+    console.log(sumarrjson3)
 
 
 
 
-let json4 = '["user1","user2","user3","user4","user5"]';
-// Выведите эти имена в виде списка ul.
-const ul = document.querySelector('.ul')
-let arrjson4 = JSON.parse(json4)
-for (let u of arrjson4) {
-    ul.innerHTML += `<li class="li">${u}</li>`
-}
+    let json4 = '["user1","user2","user3","user4","user5"]';
+    // Выведите эти имена в виде списка ul.
+    const ul = document.querySelector('.ul')
+    let arrjson4 = JSON.parse(json4)
+    for (let u of arrjson4) {
+        ul.innerHTML += `<li class="li">${u}</li>`
+    }
 
 
 
 
 
 
-let json5 = `[
+    let json5 = `[
 	{
 		"name": "user1",
 		"age": 25,
@@ -871,91 +873,91 @@ let json5 = `[
 		"salary": 700
 	}
 ]`;
-// Выведите этих работников на экран в виде HTML таблицы.
-let arrjson5 = JSON.parse(json5);
-const tableInfo = document.querySelector('.workers__body')
+    // Выведите этих работников на экран в виде HTML таблицы.
+    let arrjson5 = JSON.parse(json5);
+    const tableInfo = document.querySelector('.workers__body')
 
-for (let i of arrjson5) {
-    console.log(i)
-    tableInfo.innerHTML += `<ul class="workers__item item">
+    for (let i of arrjson5) {
+        console.log(i)
+        tableInfo.innerHTML += `<ul class="workers__item item">
     <li class="item__name">${i.name}</li>
     <li class="item__age">${i.age}</li>
     <li class="item__salary">${i.salary}$</li>
 </ul>`
-}
+    }
 
 
-/*------Преобразование структур данных JavaScript в формат JSON------*/
-let arrnojson = [1, 2, 3, 4, 5, 'a', 'b'];
-let jsonarr = JSON.stringify(arrnojson);
-console.log(jsonarr)
+    /*------Преобразование структур данных JavaScript в формат JSON------*/
+    let arrnojson = [1, 2, 3, 4, 5, 'a', 'b'];
+    let jsonarr = JSON.stringify(arrnojson);
+    console.log(jsonarr)
 
-let jsonov = ['user1', 'user2', 'user3', 'user4', 'user5'];
-// Преобразуйте этот массив в формат JSON.
-let arrjsonov = JSON.stringify(jsonov)
-console.log(arrjsonov)
-
-
-
-
-// Получите список городов в формате JSON.
-const allCities = document.querySelector('.cities');
-let citiesArr = []
-for (let c of allCities.children) {
-    citiesArr.push(c.textContent)
-}
-let citiesjson = JSON.stringify(citiesArr);
-console.log(citiesjson);
+    let jsonov = ['user1', 'user2', 'user3', 'user4', 'user5'];
+    // Преобразуйте этот массив в формат JSON.
+    let arrjsonov = JSON.stringify(jsonov)
+    console.log(arrjsonov)
 
 
 
-// Получите представленные данные в формате JSON в виде объекта с ключами surname, name, patronymic.
-const table = document.querySelector('table');
-const tr = table.querySelectorAll('tr')
-let objWork = [];
-for (let i = 1; i < tr.length; i++) {
-    const allTd = tr[i].querySelectorAll('td');
-    objWork.push({
-        surname: allTd[0].textContent,
-        name: allTd[1].textContent,
-        patronymic: allTd[2].textContent
-    })
-}
-let jsonobjwork = JSON.stringify(objWork)
-console.log(jsonobjwork)
 
-/*-----Изменение данных в JSON на JavaScript-------*/
-
-
-let jsonok = '["user1","user2","user3","user4","user5"]';
-// Добавьте в конец строки еще одного юзера.
-// let ar = JSON.parse(jsonok)
-// ar.push('user6')
-// jsonok = JSON.stringify(ar)
-// console.log(jsonok)
-
-
-function parsePushStringify(jeson, value) {
-    let arrjeson = JSON.parse(jeson);
-    arrjeson.push(value);
-    jeson = JSON.stringify(arrjeson)
-    return jeson
-}
-console.log(parsePushStringify(jsonok, 'user6'))
+    // Получите список городов в формате JSON.
+    const allCities = document.querySelector('.cities');
+    let citiesArr = []
+    for (let c of allCities.children) {
+        citiesArr.push(c.textContent)
+    }
+    let citiesjson = JSON.stringify(citiesArr);
+    console.log(citiesjson);
 
 
 
-let jsonic = '["user1","userERROR","user3","user4","user5"]';
-console.log(jsonic)
-// Поменяйте имя второго юзера.
-let arrjsonic = JSON.parse(jsonic);
-arrjsonic[1] = "user2";
-jsonic = JSON.stringify(arrjsonic)
-console.log(jsonic)
+    // Получите представленные данные в формате JSON в виде объекта с ключами surname, name, patronymic.
+    const table = document.querySelector('table');
+    const tr = table.querySelectorAll('tr')
+    let objWork = [];
+    for (let i = 1; i < tr.length; i++) {
+        const allTd = tr[i].querySelectorAll('td');
+        objWork.push({
+            surname: allTd[0].textContent,
+            name: allTd[1].textContent,
+            patronymic: allTd[2].textContent
+        })
+    }
+    let jsonobjwork = JSON.stringify(objWork)
+    console.log(jsonobjwork)
+
+    /*-----Изменение данных в JSON на JavaScript-------*/
+
+
+    let jsonok = '["user1","user2","user3","user4","user5"]';
+    // Добавьте в конец строки еще одного юзера.
+    // let ar = JSON.parse(jsonok)
+    // ar.push('user6')
+    // jsonok = JSON.stringify(ar)
+    // console.log(jsonok)
+
+
+    function parsePushStringify(jeson, value) {
+        let arrjeson = JSON.parse(jeson);
+        arrjeson.push(value);
+        jeson = JSON.stringify(arrjeson)
+        return jeson
+    }
+    console.log(parsePushStringify(jsonok, 'user6'))
 
 
 
-let jsonych = `[
+    let jsonic = '["user1","userERROR","user3","user4","user5"]';
+    console.log(jsonic)
+    // Поменяйте имя второго юзера.
+    let arrjsonic = JSON.parse(jsonic);
+    arrjsonic[1] = "user2";
+    jsonic = JSON.stringify(arrjsonic)
+    console.log(jsonic)
+
+
+
+    let jsonych = `[
 	{
 		"name": "user1",
 		"age": 25,
@@ -972,21 +974,97 @@ let jsonych = `[
 		"salary": 3000
 	}
 ]`;
-console.log(jsonych)
-// Добавьте в эту строку еще одного работника.
-let arrjsonych = JSON.parse(jsonych);
-console.log(arrjsonych)
-arrjsonych.push({
-    name: 'user4',
-    age: 17,
-    salary: 80900
-});
-console.log(arrjsonych)
-jsonych = JSON.stringify(arrjsonych)
-console.log(jsonych)
+    console.log(jsonych)
+    // Добавьте в эту строку еще одного работника.
+    let arrjsonych = JSON.parse(jsonych);
+    console.log(arrjsonych)
+    arrjsonych.push({
+        name: 'user4',
+        age: 17,
+        salary: 80900
+    });
+    console.log(arrjsonych)
+    jsonych = JSON.stringify(arrjsonych)
+    console.log(jsonych)
+}
+
+/*--------------------------------------Основы работы с локальным хранилищем в JavaScript--------------------------------------*/
+
+localStorage.setItem('key', 'hello')
+
+let str = localStorage.getItem('key')
+console.log(str)
 
 
-/*------------*/
+function setItemsInLocal(key1, key2, key3, value1, value2, value3) {
+    localStorage.setItem(key1, value1);
+    localStorage.setItem(key2, value2)
+    localStorage.setItem(key3, value3)
+}
+
+setItemsInLocal('first', 'second', 'third', '1', '2', '3');
+
+function getSumLocalStorage(key1, key2, key3) {
+    let a = localStorage.getItem(key1);
+    let b = localStorage.getItem(key2);
+    let c = localStorage.getItem(key3);
+    let sum = Number(a) + Number(b) + Number(c);
+    console.log(sum)
+}
+
+getSumLocalStorage('first', 'second', 'third')
+
+let timeUser = localStorage.getItem('time');
+
+if (!timeUser) {
+    let timeNow = (new Date()).getTime()
+    localStorage.setItem('time', timeNow)
+}
+
+
+function timeFromLastEntry(last) {
+    let timeNow = (new Date()).getTime();
+    let howMuch = ((Number(timeNow) - Number(last)) / 60000).toFixed(0)
+    console.log('С прошлого санса прошло ', howMuch, ' минут')
+}
+timeFromLastEntry(timeUser)
+
+
+const inputForBD = document.querySelector('.locals__input');
+const saveButtonBirthday = document.querySelector('.locals__save');
+const outputMessage = document.querySelector('.locals__output');
+
+saveButtonBirthday.addEventListener('click', function () {
+    if (inputForBD.value.length == 10) {
+        localStorage.setItem('birthDate', inputForBD.value)
+    }
+})
+
+let birthDate = localStorage.getItem('birthDate')
+
+window.onload = function () {
+    if (birthDate != null) {
+        let today = (new Date()).getDate()
+        let todayMonth = (new Date()).getMonth() + 1
+        if (todayMonth == Number(birthDate.slice(5, 7))) {
+            if (today == Number(birthDate.slice(8, 10))) {
+                outputMessage.classList.remove('_hide')
+                outputMessage.innerHTML = 'С ДНЕМ РОЖДЕНИЯ'
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 /*------------*/
 /*------------*/
 /*------------*/

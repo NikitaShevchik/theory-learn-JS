@@ -157,3 +157,20 @@ button {
 .cities__li {
   line-height: 1.4;
 }
+
+.locals__input {
+  font-size: 30px;
+  width: 300px;
+  margin: 0 0 10px 0;
+  padding: 5px 10px;
+  border: 1px solid #000;
+}
+.locals__output {
+  font-size: 60px;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.locals__output._hide {
+  display: none;
+}
