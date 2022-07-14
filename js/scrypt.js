@@ -990,93 +990,169 @@ function collectionInJsLearn() {
 
 /*--------------------------------------Основы работы с локальным хранилищем в JavaScript--------------------------------------*/
 
-localStorage.setItem('key', 'hello')
+function localStorageStartLearn() {
+    localStorage.setItem('key', 'hello')
+    let str = localStorage.getItem('key')
+    console.log(str)
 
-let str = localStorage.getItem('key')
-console.log(str)
-
-
-function setItemsInLocal(key1, key2, key3, value1, value2, value3) {
-    localStorage.setItem(key1, value1);
-    localStorage.setItem(key2, value2)
-    localStorage.setItem(key3, value3)
-}
-
-setItemsInLocal('first', 'second', 'third', '1', '2', '3');
-
-function getSumLocalStorage(key1, key2, key3) {
-    let a = localStorage.getItem(key1);
-    let b = localStorage.getItem(key2);
-    let c = localStorage.getItem(key3);
-    let sum = Number(a) + Number(b) + Number(c);
-    console.log(sum)
-}
-
-getSumLocalStorage('first', 'second', 'third')
-
-let timeUser = localStorage.getItem('time');
-
-if (!timeUser) {
-    let timeNow = (new Date()).getTime()
-    localStorage.setItem('time', timeNow)
-}
-
-
-function timeFromLastEntry(last) {
-    let timeNow = (new Date()).getTime();
-    let howMuch = ((Number(timeNow) - Number(last)) / 60000).toFixed(0)
-    console.log('С прошлого санса прошло ', howMuch, ' минут')
-}
-timeFromLastEntry(timeUser)
-
-
-const inputForBD = document.querySelector('.locals__input');
-const saveButtonBirthday = document.querySelector('.locals__save');
-const outputMessage = document.querySelector('.locals__output');
-
-saveButtonBirthday.addEventListener('click', function () {
-    if (inputForBD.value.length == 10) {
-        localStorage.setItem('birthDate', inputForBD.value)
+    function setItemsInLocal(key1, key2, key3, value1, value2, value3) {
+        localStorage.setItem(key1, value1);
+        localStorage.setItem(key2, value2)
+        localStorage.setItem(key3, value3)
     }
-})
 
-let birthDate = localStorage.getItem('birthDate')
+    setItemsInLocal('first', 'second', 'third', '1', '2', '3');
 
-window.onload = function () {
+    function getSumLocalStorage(key1, key2, key3) {
+        let a = localStorage.getItem(key1);
+        let b = localStorage.getItem(key2);
+        let c = localStorage.getItem(key3);
+        let sum = Number(a) + Number(b) + Number(c);
+        console.log(sum)
+    }
 
-    if (birthDate != null) {
-        let today = (new Date()).getDate()
-        let todayMonth = (new Date()).getMonth() + 1
-        if (todayMonth == Number(birthDate.slice(5, 7))) {
-            if (today == Number(birthDate.slice(8, 10))) {
-                outputMessage.classList.remove('_hide')
-                outputMessage.innerHTML = 'С ДНЕМ РОЖДЕНИЯ'
+    getSumLocalStorage('first', 'second', 'third')
+
+    let timeUser = localStorage.getItem('time');
+
+    if (!timeUser) {
+        let timeNow = (new Date()).getTime()
+        localStorage.setItem('time', timeNow)
+    }
+
+
+    function timeFromLastEntry(last) {
+        let timeNow = (new Date()).getTime();
+        let howMuch = ((Number(timeNow) - Number(last)) / 60000).toFixed(0)
+        console.log('С прошлого санса прошло ', howMuch, ' минут')
+    }
+    timeFromLastEntry(timeUser)
+
+
+    const inputForBD = document.querySelector('.locals__input');
+    const saveButtonBirthday = document.querySelector('.locals__save');
+    const outputMessage = document.querySelector('.locals__output');
+
+    saveButtonBirthday.addEventListener('click', function () {
+        if (inputForBD.value.length == 10) {
+            localStorage.setItem('birthDate', inputForBD.value)
+        }
+    })
+
+    let birthDate = localStorage.getItem('birthDate')
+
+    window.onload = function () {
+
+        if (birthDate != null) {
+            let today = (new Date()).getDate()
+            let todayMonth = (new Date()).getMonth() + 1
+            if (todayMonth == Number(birthDate.slice(5, 7))) {
+                if (today == Number(birthDate.slice(8, 10))) {
+                    outputMessage.classList.remove('_hide')
+                    outputMessage.innerHTML = 'С ДНЕМ РОЖДЕНИЯ'
+                }
             }
         }
     }
+
+    const input = document.querySelector('.input')
+    input.addEventListener('blur', function () {
+        localStorage.setItem('inputValue', input.value)
+    })
+
+    window.onload = function () {
+        input.setAttribute('placeholder', localStorage.getItem('inputValue'))
+    }
+
+    // Пользователь заходит на сайт, затем обновляет страницу, 
+    // затем еще раз обновляет и так далее. Сделайте счетчик обновления страницы. 
+    // Каждый раз при обновлении выводите значение счетчика на экран.
+
+    if (localStorage.getItem('reloads') == null) {
+        localStorage.setItem('reloads', 0)
+    }
+    window.addEventListener('unload', function () {
+        localStorage.setItem('reloads', Number(localStorage.getItem('reloads')) + 1);
+        let reloads = localStorage.getItem('reloads');
+        if (reloads == 100) {
+            localStorage.removeItem('reloads')
+        }
+    })
+
+    console.log(localStorage.getItem('reloads'))
 }
-
-const input = document.querySelector('.input')
-input.addEventListener('blur', function () {
-    localStorage.setItem('inputValue', input.value)
-})
-
-window.onload = function () {
-    input.setAttribute('placeholder', localStorage.getItem('inputValue'))
+/*-------------------------------------Хранение массивов и объектов в локальном хранилище---------------------------------------*/
+function savingLocalsStorage() {
+    let arr = [1, 2, 3, 4, 5]
+    localStorage.setItem('array', JSON.stringify(arr))
+    let getArr = localStorage.getItem('array');
+    console.log(JSON.parse(getArr))
+    const inputsSaver = document.querySelector('.inputs__saver');
+    let arrInputs = [];
+    const allInputs = document.querySelectorAll('.input');
+    inputsSaver.addEventListener('click', function () {
+        arrInputs = [];
+        for (let inp of allInputs) {
+            arrInputs.push(inp.value)
+        }
+        localStorage.setItem('inputsValues', JSON.stringify(arrInputs))
+        let valuesInputs = localStorage.getItem('inputsValues')
+        console.log(JSON.parse(valuesInputs))
+    })
+    window.onload = function () {
+        let valuesInputs = localStorage.getItem('inputsValues')
+        let arrayWithValuer = JSON.parse(valuesInputs);
+        let i = 0;
+        for (let inpu of allInputs) {
+            inpu.setAttribute('placeholder', arrayWithValuer[i])
+            i++;
+        }
+        console.log(arrayWithValuer)
+    }
 }
+/*------Модификация хранимых структур------*/
+let users = [
+    {
+        surname: 'surname1',
+        name: 'name1',
+        age: 31,
+    },
+    {
+        surname: 'surname2',
+        name: 'name2',
+        age: 32,
+    },
+    {
+        surname: 'surname3',
+        name: 'name3',
+        age: 33,
+    },
+];
+const inputsSaver = document.querySelector('.inputs__saver');
+const allInputs = document.querySelectorAll('.input');
 
-// Пользователь заходит на сайт, затем обновляет страницу, 
-// затем еще раз обновляет и так далее. Сделайте счетчик обновления страницы. 
-// Каждый раз при обновлении выводите значение счетчика на экран.
+localStorage.setItem('users', JSON.stringify(users))
+console.log(localStorage.getItem('users'))
 
-if (localStorage.getItem('reloads') == null) {
-    localStorage.setItem('reloads', 0)
+let userNew = { surname: '-', name: '-', age: '-' }
+
+// Сохраните его в локальное хранилище. Затем сделайте 3 инпута и кнопку. 
+// Пусть в инпуты вводятся фамилия, имя и возраст. 
+// По нажатию на кнопку запишите нового юзера в конец сохраненного в хранилище массива.
+function localInputs() {
+    let arrayUsersJSON = localStorage.getItem('users');
+    let users = JSON.parse(arrayUsersJSON)
+    let userNew = { surname: '-', name: '-', age: '-' }
+    userNew.surname = allInputs[0].value;
+    userNew.name = allInputs[1].value;
+    userNew.age = Number(allInputs[2].value);
+    users.push(userNew);
+    localStorage.setItem('users', JSON.stringify(users))
+
+    console.log(localStorage.getItem('users'))
+    console.log(users)
 }
-window.addEventListener('unload', function () {
-    localStorage.setItem('reloads', Number(localStorage.getItem('reloads')) + 1);
-})
-
-console.log(localStorage.getItem('reloads'))
+inputsSaver.addEventListener('click', localInputs)
 
 
 
@@ -1091,11 +1167,6 @@ console.log(localStorage.getItem('reloads'))
 
 
 
-
-
-
-/*------------*/
-/*------------*/
 /*------------*/
 /*------------*/
 /*------------*/
