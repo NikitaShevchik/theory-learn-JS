@@ -1157,6 +1157,125 @@ function modificationSavedtructures() {
 }
 
 /*-----------------------------------------Обработка исключительных ситуаций в JavaScript-----------------------------------------*/
+// let data = JSON.parse('{1,2,3,4,5}');
+
+// let str = '';
+// for (let i = 1; i <= 6 * 10 ** 6; i++) { // формируем строку более 5 мб
+// 	str += '+';
+// }
+
+// localStorage.setItem('key', str); // пытаемся записать в хранилище
+
+
+// try {
+//     let data = JSON.parse('{1,2,3,4,5}');
+// } catch (error) {
+//     console.log('ОШИБКА, НЕВЕРНЫЙ ДЖЕЙСОН')
+// }
+
+
+// Оберните этот код в конструкцию try-catch. В блоке catch выведите сообщение о переполнении хранилища.
+// Проверьте работу вашего кода для строки размером менее 5 мб и для строки большего размера.
+function fTrycatch1() {
+    let str = '';
+    for (let i = 1; i <= 6 * 10 ** 6; i++) { // формируем строку более 5 мб
+        str += '+';
+    }
+    try {
+        localStorage.setItem('key', str);
+        console.log('Успех')
+    } catch (error) {
+        console.log('Хранилище переполнено')
+    }
+}
+
+// Дан JSON, внутри которого хранится массив. Если этот JSON корректный, то выведите элементы массива в виде списка ul.
+// Если же JSON не корректный, выведите на экран сообщение о том, что на странице случилась ошибка.
+function fTrycatch2() {
+    try {
+        let jsonTest = '[1, 2, 3, 4]'
+        let jsonParse = JSON.parse(jsonTest)
+        console.log('Верный джейсон')
+        console.log(jsonParse)
+        const cities = document.querySelector('.cities');
+        for (let j of jsonParse) {
+            cities.innerHTML += `<li class = "cities__li">${j}</li>`
+        }
+
+    } catch (error) {
+        console.log('Неверный джейсон')
+    }
+}
+
+
+// Что не так с этим кодом? Исправьте недостатки этого кода.
+// let str = 'некая строка';
+// localStorage.setItem('key', str);
+// alert('успешно сохранено!');
+function fTrycatch3() {
+    let str = 'некая строка';
+    try {
+        localStorage.setItem('key', str);
+        alert('успешно сохранено!');
+    } catch (error) {
+        alert('Хранилище переполненно, не сохранено :(');
+    }
+
+}
+
+// Что не так с этим кодом? Исправьте недостатки этого кода.
+
+// let json = '[1,2,3,4,5]';
+// let arr = JSON.parse(json);
+// let sum = 0;
+// for (let elem of arr) {
+// 	sum += +elem;
+// }
+// alert(sum);
+
+function fTrycatch4() {
+    let json = '[1,2,3,4,5]';
+    try {
+        let arr = JSON.parse(json);
+        let sum = 0;
+        for (let elem of arr) {
+            sum += +elem;
+        }
+        alert(sum);
+    } catch (error) {
+        alert(`Ошибка, ${json} не является корректным джейсоном`)
+    }
+}
+
+// Вложенность кода
+function save(str) {
+    localStorage.setItem('key', str);
+    console.log('yes')
+}
+try {
+    save('string');
+} catch (error) {
+    alert('закончилось место в локальном хранилище!');
+}
+
+
+// Дана функция, преобразующая JSON в массив:
+function getArr(json) {
+    return JSON.parse(json);
+}
+// В следующем коде из JSON получают массив:
+// let arr = getArr('[1,2,3,4,5]');
+// console.log(arr);
+
+// Оберните вызов функции в конструкцию try-catch.
+try {
+    let arr = getArr('[1,2,3,4,5]');
+    console.log(arr);
+} catch (error) {
+    alert('Неверный джейсон');
+}
+
+
 
 
 
