@@ -1321,6 +1321,57 @@ function fTrycatchError() {
 
 /*------Выбрасывание исключительных ситуаций в JavaScript------*/
 
+// new Error('эрор')
+
+// throw new Error('эрор');
+
+function div(a, b) {
+    if (b !== 0) {
+        return a / b;
+    } else {
+        throw new Error('ошибка деления на ноль');
+    }
+}
+
+// console.log(div(5, 0))
+// alert(div(5, 0))
+
+// try {
+//     alert(div(3, 0));
+// } catch (error) {
+//     alert('вы пытаетесь делить на 0, что запрещено');
+// }
+
+
+// Напишите свою функцию, которая будет извлекать корень из числа и при этом выбрасывать исключение, 
+// если корень извлекается из отрицательного числа.
+let result = Math.sqrt(-1);
+
+function sqrt(a){
+    if (a >= 0){
+        alert(Math.sqrt(a))
+    } else {
+        throw new Error('Нельзя извлекать корень из отрицательного числа')
+    }
+}
+
+try {
+    sqrt(-100)
+} catch (error) {
+    alert('Запрещенно извлекать корень из отрицательного числа!')
+}
+
+// try {
+//     if (result === NaN){
+//         console.log(result)
+//     }
+// } catch (error) {
+    
+// }
+// console.log(result); // выведет NaN
+
+
+/*------Типы исключений------*/
 
 
 
@@ -1344,26 +1395,6 @@ function fTrycatchError() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*------------*/
 /*------------*/
 /*------------*/
 /*------------*/
