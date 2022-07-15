@@ -1246,34 +1246,80 @@ function fTrycatch4() {
         alert(`Ошибка, ${json} не является корректным джейсоном`)
     }
 }
+function fTrycatchError() {
+    // Вложенность кода
+    function save(str) {
+        localStorage.setItem('key', str);
+        console.log('yes')
+    }
+    try {
+        save('string');
+    } catch (error) {
+        alert('закончилось место в локальном хранилище!');
+    }
 
-// Вложенность кода
-function save(str) {
-    localStorage.setItem('key', str);
-    console.log('yes')
+    // Дана функция, преобразующая JSON в массив:
+    function getArr(json) {
+        return JSON.parse(json);
+    }
+    // В следующем коде из JSON получают массив:
+    // let arr = getArr('[1,2,3,4,5]');
+    // console.log(arr);
+
+    // Оберните вызов функции в конструкцию try-catch.
+    try {
+        let arr = getArr('[1,2,3,4,5]');
+        console.log(arr);
+    } catch (error) {
+        alert('Неверный джейсон');
+    }
+
+    /*------Объект с ошибкой------*/
+    // Специально создайте исключительную ситуацию, связанную с попыткой разбора некорректного JSON. Выведите в консоль имя и текст этой ошибки.
+
+    try {
+        let arr = getArr([1, 2, 3, 4, 5]);
+    } catch (error) {
+        console.log(error.name); // имя ошибки
+        console.log(error.message); // текст ошибки
+    }
+
+    // Специально создайте исключительную ситуацию, связанную с переполнением локального хранилища. Выведите в консоль имя и текст этой ошибки.
+    let str = ''
+    try {
+        for (let i = 0; i < 6 * 10 ** 6; i++) {
+            str += '+'
+        }
+        localStorage.setItem('longPlus', str)
+    } catch (error) {
+        console.log(error.name);
+        console.log(error.message);
+    }
+
+    // создайте функцию, принимающую массив, и заполняющий локальный стораж каждым элементом этого массива. Затем добавим его в трайкетч
+    // и в случае ошибки = дадим понять пользователю в чем именно беда
+
+    function writeLocal(json) {
+        let array = JSON.parse(json)
+
+        for (let i = 0; i < array.length; i++) {
+            localStorage.setItem(i, array[i])
+        }
+    }
+    try {
+        writeLocal('[1, 2, 3, 4]')
+        console.log(localStorage)
+    } catch (error) {
+        if (error.name === 'SyntaxError') {
+            console.log('Неправильно записанный джейсон')
+        }
+        if (error.name === 'QuotaExceededError') {
+            console.log('Память локального хранилища заполнена')
+        }
+    }
 }
-try {
-    save('string');
-} catch (error) {
-    alert('закончилось место в локальном хранилище!');
-}
 
-
-// Дана функция, преобразующая JSON в массив:
-function getArr(json) {
-    return JSON.parse(json);
-}
-// В следующем коде из JSON получают массив:
-// let arr = getArr('[1,2,3,4,5]');
-// console.log(arr);
-
-// Оберните вызов функции в конструкцию try-catch.
-try {
-    let arr = getArr('[1,2,3,4,5]');
-    console.log(arr);
-} catch (error) {
-    alert('Неверный джейсон');
-}
+/*------Выбрасывание исключительных ситуаций в JavaScript------*/
 
 
 
@@ -1291,8 +1337,32 @@ try {
 
 
 
-/*------------*/
-/*------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*------------*/
 /*------------*/
 /*------------*/
