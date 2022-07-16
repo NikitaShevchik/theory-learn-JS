@@ -1377,45 +1377,42 @@ function throwError() {
 
 // В JavaScript предусмотрено решение этой проблемы: можно выбрасывать исключения не только типа Error, 
 // но и любого встроенного в JavaScript типа ошибки, например, TypeError, SyntaxError, RangeError.
-
-try {
-    // throw new Error('текст исключения');
-    throw new SyntaxError('текст исключения');
-} catch (error) {
-    console.log(error.name); // 'Error'
-    console.log(error.message); // 'текст исключения'
-}
-
-try {
-    // throw new Error('текст исключения');
-    throw new TypeError('текст Type эрора');
-} catch (error) {
-    console.log(error.name); // 'Error'
-    console.log(error.message); // 'текст исключения'
-}
-
-let x = 2;
-try {
-    if (x == 3) {
+function typeOfTryCatch() {
+    try {
+        // throw new Error('текст исключения');
         throw new SyntaxError('текст исключения');
-    } else {
-        throw new RangeError('текст Type эрора');
+    } catch (error) {
+        console.log(error.name); // 'Error'
+        console.log(error.message); // 'текст исключения'
     }
-} catch (error) {
-    if (error.name == 'SyntaxError') {
-        console.log('syntax')
-    } else if (error.name == 'RangeError') {
-        console.log('range error')
+
+    try {
+        // throw new Error('текст исключения');
+        throw new TypeError('текст Type эрора');
+    } catch (error) {
+        console.log(error.name); // 'Error'
+        console.log(error.message); // 'текст исключения'
+    }
+
+    let x = 2;
+    try {
+        if (x == 3) {
+            throw new SyntaxError('текст исключения');
+        } else {
+            throw new RangeError('текст Type эрора');
+        }
+    } catch (error) {
+        if (error.name == 'SyntaxError') {
+            console.log('syntax')
+        } else if (error.name == 'RangeError') {
+            console.log('range error')
+        }
     }
 }
-
 
 // Переделайте эту функцию так, чтобы она выбрасывала исключение с каким-нибудь придуманными типом.
 
 function throwErrorReplace() {
-
-
-
     function div(a, b) {
         if (b != 0) {
             alert(a / b)
@@ -1541,12 +1538,70 @@ function checkJSONError() {
     }
 }
 
-
 /*-------Проброс исключений-----*/
 
+// Правило: ваш код должен ловить только те исключения, с которыми знает,
+// как справится. Если исключение не известное, то его нужно пробросить дальше
+// с помощью throw. В этом случае его выше поймает кто-то более осведомленный
+// либо исключение вывалится ошибкой в консоль.
+
+// Что не так с этим кодом? Исправьте его на более удачный.
+
+// try {
+// 	let arr = JSON.parse(json);
+
+// 	for (let i = 0; i < arr.length; i++) {
+// 		localStorage.setItem(i, arr[i]);
+// 	}
+// } catch (error) {
+// 	if (error.name == 'QuotaExceededError') {
+// 		alert('закончилось место в хранилище');
+// 	}
+
+// 	if (error.name == 'SyntaxError') {
+// 		alert('некорректный JSON');
+// 	}
+// }
+function editNotGoodCodeJson() {
+    try {
+        let arr = JSON.parse(json);
+        for (let i = 0; i < arr.length; i++) {
+            localStorage.setItem(i, arr[i]);
+        }
+    } catch (error) {
+        if (error.name == 'QuotaExceededError') {
+            alert('закончилось место в хранилище');
+        } else if (error.name == 'SyntaxError') {
+            alert('некорректный JSON');
+        } else {
+            alert(error.message);
+        }
+    }
+}
+
+/*-----------------------------------------------Основы работы с терминалом--------------------------------------*/
 
 
 
-/*------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*------------*/
 /*------------*/
