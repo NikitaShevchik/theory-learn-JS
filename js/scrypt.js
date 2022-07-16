@@ -1452,28 +1452,101 @@ function throwErrorReplace() {
     }
 }
 
-/*------Пример применения------*/
+// /*------Пример применения------*/
+// let el;
+// window.addEventListener('load', function () {
+//     const locals = document.querySelector('.locals');
+//     locals.innerHTML = '<div id="product" data-product="яблоко" data-price="1000" data-amount="5" class = "apple"></div>';
+//     el = document.querySelector('.apple');
+// })
 
+function primPr() {
 
-window.addEventListener('load', function () {
-    const locals = document.querySelector('.locals');
-    locals.innerHTML = '<div id="product" data-product="яблоко" data-price="1000" data-amount="5"></div>'
-})
+    const appleElement = document.getElementById('product')
 
-function getCost(elem) {
-    return elem.dataset.price * elem.dataset.amount;
+    function getCost(elem) {
+        if (elem.dataset.price !== undefined && elem.dataset.amount !== undefined) {
+            return elem.dataset.price * elem.dataset.amount;
+        } else {
+            return 0; // вернем что-нибудь, например, 0 или null или false
+        }
+    }
+
+    function getCost2(elem) {
+        if (elem.dataset.price !== undefined && elem.dataset.amount !== undefined) {
+            return elem.dataset.price * elem.dataset.amount;
+        } else {
+            throw {
+                name: 'ProductCostError',
+                message: 'отсутствует цена или количество у продукта'
+            };
+        }
+    }
+
+    // try {
+    //     let cost = getCost2(appleElement);
+    //     alert(cost)
+    // } catch (error) {
+    //     alert(error.message)
+    // }
+
+    // Переделайте мой код так, чтобы функция getCost выбрасывала два типа исключений: 
+    // если отсутствует цена и если отсутствует количество. Хорошо подумайте над названиями 
+    // этих исключений. В блоке catch выведите разные сообщения об ошибке для исключений разных типов.
+
+    function getCost3(elem) {
+        if (elem.dataset.price !== undefined && elem.dataset.amount !== undefined) {
+            return elem.dataset.price * elem.dataset.amount;
+        } else if (elem.dataset.price === undefined) {
+            throw {
+                name: 'ProductPriceError',
+                message: 'отсутствует цена у продукта'
+            };
+        } else if (elem.dataset.amount === undefined) {
+            throw {
+                name: 'ProductAmountError',
+                message: 'отсутствует количество у продукта'
+            };
+        }
+    }
+
+    try {
+        let cost = getCost3(appleElement);
+        alert(cost)
+    } catch (error) {
+        alert(error.message)
+    }
+}
+
+// Проверьте этот JSON на общую корректность при разборе, а после разбора проверьте,
+// что в результате получается массив, а не что-то другое. Если в результате
+// получается не массив - выбросите исключение.
+
+function checkJSONError() {
+    try {
+        let json = `{"nikita": "me"}`;
+        let jsonParse = JSON.parse(json);
+        if (Array.isArray(jsonParse)) {
+            console.log('Array')
+        } else {
+            console.log('Not Array')
+            throw { name: 'NotArrayJson', message: 'Присланный Джейсон не является массивом' }
+        }
+    } catch (error) {
+        if (error.name == 'NotArrayJson') {
+            alert(error.message)
+        } else if (error.name == 'SyntaxError') {
+            alert('Неверная запись джейсона')
+        }
+    }
 }
 
 
+/*-------Проброс исключений-----*/
 
 
 
 
-
-
-
-
-/*------------*/
 /*------------*/
 /*------------*/
 /*------------*/
