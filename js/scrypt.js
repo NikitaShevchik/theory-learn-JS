@@ -1320,59 +1320,149 @@ function fTrycatchError() {
 }
 
 /*------Выбрасывание исключительных ситуаций в JavaScript------*/
+function throwError() {
 
-// new Error('эрор')
 
-// throw new Error('эрор');
+    // new Error('эрор')
 
-function div(a, b) {
-    if (b !== 0) {
-        return a / b;
-    } else {
-        throw new Error('ошибка деления на ноль');
+    // throw new Error('эрор');
+
+    function div(a, b) {
+        if (b !== 0) {
+            return a / b;
+        } else {
+            throw new Error('ошибка деления на ноль');
+        }
     }
-}
 
-// console.log(div(5, 0))
-// alert(div(5, 0))
+    // console.log(div(5, 0))
+    // alert(div(5, 0))
 
-// try {
-//     alert(div(3, 0));
-// } catch (error) {
-//     alert('вы пытаетесь делить на 0, что запрещено');
-// }
+    // try {
+    //     alert(div(3, 0));
+    // } catch (error) {
+    //     alert('вы пытаетесь делить на 0, что запрещено');
+    // }
 
 
-// Напишите свою функцию, которая будет извлекать корень из числа и при этом выбрасывать исключение, 
-// если корень извлекается из отрицательного числа.
-let result = Math.sqrt(-1);
+    // Напишите свою функцию, которая будет извлекать корень из числа и при этом выбрасывать исключение, 
+    // если корень извлекается из отрицательного числа.
+    let result = Math.sqrt(-1);
 
-function sqrt(a){
-    if (a >= 0){
-        alert(Math.sqrt(a))
-    } else {
-        throw new Error('Нельзя извлекать корень из отрицательного числа')
+    function sqrt(a) {
+        if (a >= 0) {
+            alert(Math.sqrt(a))
+        } else {
+            throw new Error('Нельзя извлекать корень из отрицательного числа')
+        }
     }
+
+    try {
+        sqrt(-100)
+    } catch (error) {
+        alert('Запрещенно извлекать корень из отрицательного числа!')
+    }
+
+    // try {
+    //     if (result === NaN){
+    //         console.log(result)
+    //     }
+    // } catch (error) {
+
+    // }
+    // console.log(result); // выведет NaN
 }
-
-try {
-    sqrt(-100)
-} catch (error) {
-    alert('Запрещенно извлекать корень из отрицательного числа!')
-}
-
-// try {
-//     if (result === NaN){
-//         console.log(result)
-//     }
-// } catch (error) {
-    
-// }
-// console.log(result); // выведет NaN
-
 
 /*------Типы исключений------*/
 
+// В JavaScript предусмотрено решение этой проблемы: можно выбрасывать исключения не только типа Error, 
+// но и любого встроенного в JavaScript типа ошибки, например, TypeError, SyntaxError, RangeError.
+
+try {
+    // throw new Error('текст исключения');
+    throw new SyntaxError('текст исключения');
+} catch (error) {
+    console.log(error.name); // 'Error'
+    console.log(error.message); // 'текст исключения'
+}
+
+try {
+    // throw new Error('текст исключения');
+    throw new TypeError('текст Type эрора');
+} catch (error) {
+    console.log(error.name); // 'Error'
+    console.log(error.message); // 'текст исключения'
+}
+
+let x = 2;
+try {
+    if (x == 3) {
+        throw new SyntaxError('текст исключения');
+    } else {
+        throw new RangeError('текст Type эрора');
+    }
+} catch (error) {
+    if (error.name == 'SyntaxError') {
+        console.log('syntax')
+    } else if (error.name == 'RangeError') {
+        console.log('range error')
+    }
+}
+
+
+// Переделайте эту функцию так, чтобы она выбрасывала исключение с каким-нибудь придуманными типом.
+
+function throwErrorReplace() {
+
+
+
+    function div(a, b) {
+        if (b != 0) {
+            alert(a / b)
+        } else {
+            throw { name: 'DivisionByZeroError', message: 'Ошибка деления на ноль' }
+        }
+    }
+
+    // DivisionByZeroError
+
+    try {
+        div(5, 2)
+    } catch (error) {
+        alert(error.message)
+    }
+
+    // Выше вы делали функцию, выбрасывающую исключение при попытке извлечь корень из отрицательного числа.
+    // Переделайте вашу функцию так, чтобы она выбрасывала исключение с придуманным вами типом.
+    // Хорошо подумайте над названием исключения, чтобы это название было удачным.
+
+    function sqrt(a) {
+        if (a < 0) {
+            throw { name: 'SqrtNegativeNumber', message: 'Нельзя извлекать корень из отрицательного числа' }
+        } else {
+            let result = Math.sqrt(a)
+            alert(result)
+        }
+    }
+
+    try {
+        sqrt(-10)
+    } catch (error) {
+        alert(error.message)
+    }
+}
+
+/*------Пример применения------*/
+
+
+window.addEventListener('load', function () {
+    const locals = document.querySelector('.locals');
+    locals.innerHTML = '<div id="product" data-product="яблоко" data-price="1000" data-amount="5"></div>'
+})
+
+function getCost(elem) {
+    return elem.dataset.price * elem.dataset.amount;
+}
 
 
 
@@ -1383,19 +1473,6 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-/*------------*/
 /*------------*/
 /*------------*/
 /*------------*/
